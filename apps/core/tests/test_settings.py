@@ -13,6 +13,12 @@ def test_database_is_configured():
     assert database["NAME"]
 
 
-def test_local_secret_key_is_not_placeholder():
+def test_secret_key_is_not_placeholder():
     assert settings.SECRET_KEY
-    assert settings.SECRET_KEY != "REPLACE_WITH_LOCAL_RANDOM_SECRET"
+    assert not settings.SECRET_KEY.startswith("REPLACE_WITH_")
+
+
+def test_static_settings_are_configured():
+    assert settings.STATIC_URL == "/static/"
+    assert settings.STATIC_ROOT
+    assert settings.STATICFILES_DIRS

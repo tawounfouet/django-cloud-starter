@@ -6,36 +6,64 @@ from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(BASE_DIR / ".env")
+VALID_ENVS = {"local", "ci", "preview", "production"}
+
+if (os.getenv("VERCEL") or os.getenv("CI")) and not os.getenv("APP_ENV"):
+    raise ImproperlyConfigured("APP_ENV est requis en déploiement ou en CI")
+
+APP_ENV = os.getenv("APP_ENV", "local")
+if APP_ENV not in VALID_ENVS:
+    raise ImproperlyConfigured(f"APP_ENV non autorisé : {APP_ENV}")
+
+if APP_ENV == "local":
+    load_dotenv(BASE_DIR / ".env", override=False)
+    APP_ENV = os.getenv("APP_ENV", "local")
+    if APP_ENV != "local":
+        raise ImproperlyConfigured("Le .env local ne peut pas sélectionner un autre APP_ENV")
+
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
+if not SECRET_KEY or SECRET_KEY.startswith("REPLACE_WITH_"):
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY absent ou factice")
+
+DEBUG = APP_ENV == "local" and os.getenv(
+    "DJANGO_DEBUG", "false"
+).strip().lower() == "true"
 
 
-def env_bool(name, default=False):
-    value = os.environ.get(name)
-    if value is None or value.strip() == "":
-        return default
-    return value.strip().lower() in {"1", "true", "yes", "on"}
+def csv_setting(name: str) -> list[str]:
+    return [item.strip() for item in os.getenv(name, "").split(",") if item.strip()]
 
 
-def env_list(name, default=""):
-    return [item.strip() for item in os.environ.get(name, default).split(",") if item.strip()]
+ALLOWED_HOSTS = csv_setting("DJANGO_ALLOWED_HOSTS")
+if APP_ENV == "local" and not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+if APP_ENV in {"preview", "production"} and not ALLOWED_HOSTS:
+    raise ImproperlyConfigured("DJANGO_ALLOWED_HOSTS requis en ligne")
+if APP_ENV != "local" and "*" in ALLOWED_HOSTS:
+    raise ImproperlyConfigured("ALLOWED_HOSTS wildcard interdit hors local")
 
+CSRF_TRUSTED_ORIGINS = csv_setting("DJANGO_CSRF_TRUSTED_ORIGINS")
 
-APP_ENV = os.environ.get("APP_ENV", "local")
-DEBUG = env_bool("DJANGO_DEBUG", APP_ENV == "local")
-
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "")
-if not SECRET_KEY and APP_ENV == "local":
-    SECRET_KEY = "django-insecure-local-development-only"
-if APP_ENV != "local" and (
-    not SECRET_KEY
-    or SECRET_KEY.startswith("django-insecure")
-    or SECRET_KEY == "REPLACE_WITH_LOCAL_RANDOM_SECRET"
-):
-    raise ImproperlyConfigured("DJANGO_SECRET_KEY must be a real secret outside local environment")
-
-ALLOWED_HOSTS = env_list("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1" if DEBUG else "")
-CSRF_TRUSTED_ORIGINS = env_list("DJANGO_CSRF_TRUSTED_ORIGINS")
-LOG_LEVEL = os.environ.get("DJANGO_LOG_LEVEL", "INFO").upper()
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL:
+    if APP_ENV != "local" and not DATABASE_URL.startswith(("postgres://", "postgresql://")):
+        raise ImproperlyConfigured("DATABASE_URL PostgreSQL est requis hors local")
+    DATABASES = {
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=0,
+            ssl_require=APP_ENV in {"preview", "production"},
+        )
+    }
+elif APP_ENV == "local":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    raise ImproperlyConfigured("DATABASE_URL PostgreSQL est requis hors local")
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -44,6 +72,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "apps.core",
 ]
 
 MIDDLEWARE = [
@@ -61,7 +90,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -74,14 +103,21 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "config.wsgi.application"
-ASGI_APPLICATION = "config.asgi.application"
 
-DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-    )
-}
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
+USE_I18N = True
+USE_TZ = True
+
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+SESSION_COOKIE_SECURE = APP_ENV in {"preview", "production"}
+CSRF_COOKIE_SECURE = APP_ENV in {"preview", "production"}
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_SECONDS = 0
+SECURE_SSL_REDIRECT = False
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -98,15 +134,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
-USE_I18N = True
-USE_TZ = True
-
-STATIC_URL = "static/"
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+LOG_LEVEL = os.getenv("DJANGO_LOG_LEVEL", "INFO").upper()
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
