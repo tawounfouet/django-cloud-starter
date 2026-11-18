@@ -35,7 +35,7 @@
 |---|---|---:|---:|---|
 | EP-00 | R0 | 4 | 4 | terminé |
 | EP-01 | R1 | 7 | 7 | termine |
-| EP-02 | R1/R2 | 1 | 6 | en cours |
+| EP-02 | R1/R2 | 5 | 6 | en cours |
 | EP-03 | R2 | 0 | 6 | a demarrer |
 | EP-04 | R3 | 0 | 8 | a demarrer |
 | EP-05 | R1/R3 | 0 | 4 | a demarrer |
@@ -43,7 +43,7 @@
 | EP-07 | R3/R5 | 0 | 4 | a demarrer |
 | EP-08 | R4 | 0 | 4 | conditionnel P2 |
 | EP-09 | R5 | 0 | 4 | conditionnel P2 |
-| **Total** | | **12** | **52** | **23 %** |
+| **Total** | | **16** | **52** | **31 %** |
 
 ## Timeline ASCII
 
@@ -53,7 +53,7 @@ Legend : `#` fait, `>` position courante, `.` restant. Chaque barre represente 2
 Jalon  Epic  Avancement             Fait/Total  Pourcent  Etat
 R0     EP-00 |####################|   4/4        100 %    termine
 R1     EP-01 |####################|   7/7        100 %    termine
-R1/R2  EP-02 |#>..................|   1/6          17 %    en cours
+R1/R2  EP-02 |################>...|   5/6          83 %    en cours
 R2     EP-03 |>...................|   0/6          0 %    a demarrer
 R3     EP-04 |>...................|   0/8          0 %    a demarrer
 R1/R3  EP-05 |>...................|   0/4          0 %    a demarrer
@@ -61,7 +61,7 @@ R3/R5  EP-06 |>...................|   0/5          0 %    a demarrer
 R3/R5  EP-07 |>...................|   0/4          0 %    a demarrer
 R4     EP-08 |>...................|   0/4          0 %    conditionnel P2
 R5     EP-09 |>...................|   0/4          0 %    conditionnel P2
-TOTAL  TOUS  |####>...............|  12/52        23 %    en cours
+TOTAL  TOUS  |######>.............|  16/52        31 %    en cours
 ```
 
 ## Suivi hebdomadaire
@@ -70,7 +70,7 @@ Une ligne par semaine. Les lignes `cible` sont indicatives et doivent etre rempl
 
 ```text
 Semaine  Releve      Fait/Total  Barre                Delta  Note
-2026-W47 2026-11-18 12/52        |####>...............|  +5   base R1.1, docs, R1.2 et CI locale
+2026-W47 2026-11-18 16/52        |######>.............|  +9   base R1.1, docs, R1.2, CI et runs GitHub
 2026-W48 a remplir   -/52        |....................|   -   cible : R1.2
 2026-W49 a remplir   -/52        |....................|   -   cible : CI GitHub
 ```
@@ -108,11 +108,11 @@ rg -c '^\| US-[0-9]{3}.*\| \[ \] \|' TODO.md
 
 | Story | Tache | Priorite | Gate | Statut | Date | Assigne a | Preuve / note |
 |---|---|---|---|---|---|---|---|
-| [US-012](docs/tasks/US-012_publier-le-projet-dans-le-depot-github-choisi.md) | Publier le projet dans le depot GitHub choisi | P0 | R1/R2 | [ ] | 2026-11-18 | tawounfouet (humain) | (partiel : remote configure, 8 commits locaux, push non autorise) |
-| [US-013](docs/tasks/US-013_etablir-les-controles-statiques-et-de-dependa.md) | Etablir les controles statiques et de dependances | P0 | R1/R2 | [ ] | 2026-11-18 | opencode/big-pickle (agent) | (partiel : controles locaux et hygiene valides, run GitHub a valider, `bbf58a8`) |
-| [US-014](docs/tasks/US-014_configurer-github-actions-pour-les-pull-reque.md) | Configurer GitHub Actions pour les pull requests | P0 | R1/R2 | [ ] | 2026-11-18 | opencode/big-pickle (agent) | (partiel : workflow cree, statuts PR a valider, `bbf58a8`) |
-| [US-015](docs/tasks/US-015_ajouter-les-tests-d-integration-sur-postgresq.md) | Ajouter les tests d'integration sur PostgreSQL isole | P0 | R1/R2 | [ ] | 2026-11-18 | opencode/big-pickle (agent) | (partiel : service PostgreSQL 17 dans le workflow, run GitHub a valider, `bbf58a8`) |
-| [US-016](docs/tasks/US-016_rendre-la-fusion-conditionnelle-aux-controles.md) | Rendre la fusion conditionnelle aux controles | P0 | R1/R2 | [ ] | 2026-11-18 | tawounfouet (humain) | (partiel : check `quality-and-tests` documente, regle a appliquer dans GitHub) |
+| [US-012](docs/tasks/US-012_publier-le-projet-dans-le-depot-github-choisi.md) | Publier le projet dans le depot GitHub choisi | P0 | R1/R2 | [x] | 2026-11-18 | tawounfouet (humain) | push main, run CI vert `44282007106` |
+| [US-013](docs/tasks/US-013_etablir-les-controles-statiques-et-de-dependa.md) | Etablir les controles statiques et de dependances | P0 | R1/R2 | [x] | 2026-11-18 | opencode/big-pickle (agent) | ruff, format, lock et hygiene verts sur GitHub, `0c6f29d`, `d85b444` |
+| [US-014](docs/tasks/US-014_configurer-github-actions-pour-les-pull-reque.md) | Configurer GitHub Actions pour les pull requests | P0 | R1/R2 | [x] | 2026-11-18 | opencode/big-pickle (agent) | CI `quality-and-tests` verte, `44282007106` |
+| [US-015](docs/tasks/US-015_ajouter-les-tests-d-integration-sur-postgresq.md) | Ajouter les tests d'integration sur PostgreSQL isole | P0 | R1/R2 | [x] | 2026-11-18 | opencode/big-pickle (agent) | PostgreSQL 17, migrations et 25 tests verts sur GitHub |
+| [US-016](docs/tasks/US-016_rendre-la-fusion-conditionnelle-aux-controles.md) | Rendre la fusion conditionnelle aux controles | P0 | R1/R2 | [ ] | 2026-11-18 | tawounfouet (humain) | (partiel : CI verte, regle de protection GitHub encore a appliquer) |
 | [US-017](docs/tasks/US-017_documenter-l-onboarding-et-les-commandes-cour.md) | Documenter l'onboarding et les commandes courantes | P0 | R1/R2 | [x] | 2026-11-18 | opencode/big-pickle (agent) | README CI et depannage, clone vierge valide, `bbf58a8` |
 
 ## EP-03 - Deploiement Vercel et previsualisations
@@ -200,9 +200,9 @@ rg -c '^\| US-[0-9]{3}.*\| \[ \] \|' TODO.md
 | Action | Lien | Statut | Date | Assigne a | Note |
 |---|---|---|---|---|---|
 | Implementer R1.2 | `docs/plans/02_R1_SOCLE_LOCAL.md` | [x] | 2026-11-18 | opencode/big-pickle (agent) | US-008 a US-011, `3d1bf9b` |
-| Configurer la CI GitHub Actions | `docs/plans/03_R2_GITHUB_CI.md` | [ ] | 2026-11-18 | opencode/big-pickle (agent) | workflow local `bbf58a8`, validation GitHub apres push |
+| Configurer la CI GitHub Actions | `docs/plans/03_R2_GITHUB_CI.md` | [x] | 2026-11-18 | opencode/big-pickle (agent) | run GitHub vert `44282007106` |
 | Consigner la preuve de clone vierge | `docs/specs/02_BACKLOG_ET_USER_STORIES.md` | [x] | 2026-11-18 | opencode/big-pickle (agent) | [US-017](docs/tasks/US-017_documenter-l-onboarding-et-les-commandes-cour.md), `bbf58a8` |
-| Creer le workflow GitHub Actions | `docs/plans/03_R2_GITHUB_CI.md` | [ ] | 2026-11-18 | opencode/big-pickle (agent) | [US-014](docs/tasks/US-014_configurer-github-actions-pour-les-pull-reque.md), `bbf58a8` |
+| Creer le workflow GitHub Actions | `docs/plans/03_R2_GITHUB_CI.md` | [x] | 2026-11-18 | opencode/big-pickle (agent) | [US-014](docs/tasks/US-014_configurer-github-actions-pour-les-pull-reque.md), `44282007106` |
 | Mettre a jour le journal des changements | `CHANGELOG.md` | [x] | 2026-11-18 | opencode/big-pickle (agent) | `bbf58a8`, `6c212b0` |
-| Pousser `main` et valider le run CI | `git@github.com:tawounfouet/django-cloud-starter.git` | [ ] | a planifier | tawounfouet (humain) | autorisation de push requise |
+| Pousser `main` et valider le run CI | `git@github.com:tawounfouet/django-cloud-starter.git` | [x] | 2026-11-18 | tawounfouet (humain) | run vert `44282007106` |
 | Appliquer la protection de `main` | `https://github.com/tawounfouet/django-cloud-starter/settings/branches` | [ ] | a planifier | tawounfouet (humain) | check requis : `quality-and-tests` |

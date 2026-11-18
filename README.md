@@ -52,7 +52,11 @@ Le workflow `.github/workflows/ci.yml` se déclenche sur les pull requests vers 
 
 La CI installe les dépendances depuis `uv.lock`, vérifie l'hygiène du dépôt, lance Ruff, contrôle le lockfile, exécute les checks Django, vérifie les migrations, applique les migrations sur un PostgreSQL 17 jetable, lance `pytest` et valide `collectstatic`. Aucun secret de production n'est exposé aux pull requests, y compris issues d'un fork : le workflow utilise uniquement des valeurs éphémères et `pull_request_target` n'est pas utilisé.
 
-La protection de `main`, la revue requise et les vérifications obligatoires se configurent dans les paramètres du dépôt GitHub. Le dépôt doit être publié et le workflow poussé avant que ces règles puissent être appliquées.
+La protection de `main`, la revue requise et les vérifications obligatoires se configurent dans les paramètres du dépôt GitHub. Le check à exiger est `quality-and-tests`.
+
+## Conventions de contribution
+
+Travailler sur une branche `feat/*`, `fix/*` ou `docs/*`, puis ouvrir une pull request vers `main`. Les commits suivent le format conventional commits. Avant de proposer une fusion, exécuter les vérifications locales listées plus haut et joindre le lien du run CI vert à la pull request.
 
 ## Dépannage
 

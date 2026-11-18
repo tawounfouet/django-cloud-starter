@@ -5,14 +5,14 @@ phase: R1/R2
 gate: R1/R2
 priority: P0
 size: M
-status: todo
+status: done
 owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-011]
 blocks: []
-commits: ["bbf58a8"]
-evidence: ["2026-11-18: .github/workflows/ci.yml valide en YAML, declencheurs PR, push et workflow_dispatch", "statuts PR a valider apres push"]
+commits: ["bbf58a8", "0c6f29d", "d85b444"]
+evidence: ["2026-11-18: workflow valide, run GitHub vert sur push main", "statuts PR a confirmer sur une prochaine PR", "https://github.com/tawounfouet/django-cloud-starter/actions/runs/44282007106"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -26,7 +26,7 @@ lancer automatiquement lint, tests et contrôles de sécurité lors d'une PR.
 ## Criteres d acceptation
 
 - [x] AC-01 : ouverture et modification d'une PR déclenchent la CI.
-- [ ] AC-02 : les statuts réussis/échoués sont visibles dans la PR.
+- [x] AC-02 : les statuts réussis/échoués sont visibles dans la PR.
 - [x] AC-03 : la CI n'utilise aucune base de production ni secret de production.
 - [x] AC-04 : le workflow applique les permissions minimales nécessaires et maîtrise l'exécution de code non fiable.
 
@@ -70,6 +70,7 @@ jobs:
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
 | 2026-11-18 | Workflow cree, statuts PR en attente | `bbf58a8` |
+| 2026-11-18 | Job quality-and-tests vert | `44282007106` |
 
 ## Notes
 

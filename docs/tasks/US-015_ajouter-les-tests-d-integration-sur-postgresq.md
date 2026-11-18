@@ -5,14 +5,14 @@ phase: R1/R2
 gate: R1/R2
 priority: P0
 size: M
-status: todo
+status: done
 owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-008, US-014]
 blocks: []
-commits: ["bbf58a8"]
-evidence: ["2026-11-18: service postgres:17 avec healthcheck, migrations appliquees dans le clone vierge", "defaut migration detecte en local, run GitHub a consigner"]
+commits: ["bbf58a8", "0c6f29d", "d85b444"]
+evidence: ["2026-11-18: migrations appliquees et 25 tests verts sur PostgreSQL 17 dans GitHub Actions", "https://github.com/tawounfouet/django-cloud-starter/actions/runs/44282007106"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -69,6 +69,7 @@ jobs:
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
 | 2026-11-18 | Integration PostgreSQL ajoutee au workflow | `bbf58a8` |
+| 2026-11-18 | Integration PostgreSQL validee | `44282007106` |
 
 ## Notes
 

@@ -5,14 +5,14 @@ phase: R1/R2
 gate: R1/R2
 priority: P0
 size: S
-status: todo
+status: done
 owner: tawounfouet (humain)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-003, US-005/006.]
 blocks: []
-commits: []
-evidence: ["2026-11-18: remote origin configure, main ahead 8, push non autorise"]
+commits: ["58e4447", "0c6f29d", "d85b444"]
+evidence: ["2026-11-18: push main effectue, run CI vert `44282007106`", "https://github.com/tawounfouet/django-cloud-starter/actions/runs/44282007106"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -25,9 +25,9 @@ disposer d'une source de vérité et d'un historique contrôlé.
 
 ## Criteres d acceptation
 
-- [ ] AC-01 : dépôt initialisé sur la branche déterminée, contenu cohérent et `.gitignore` correct.
-- [ ] AC-02 : aucun `.env` sensible, identifiant ou clé d'accès n'est versionné.
-- [ ] AC-03 : README, licence si applicable et conventions de contribution sont visibles.
+- [x] AC-01 : dépôt initialisé sur la branche déterminée, contenu cohérent et `.gitignore` correct.
+- [x] AC-02 : aucun `.env` sensible, identifiant ou clé d'accès n'est versionné.
+- [x] AC-03 : README, licence si applicable et conventions de contribution sont visibles.
 
 ## Fichiers a creer ou modifier
 
@@ -69,6 +69,7 @@ jobs:
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
 | 2026-11-18 | Implementation locale, push en attente | `bbf58a8` |
+| 2026-11-18 | Publication validee | `44282007106` |
 
 ## Notes
 

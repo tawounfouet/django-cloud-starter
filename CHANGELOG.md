@@ -34,6 +34,8 @@ Le format est chronologique et lie chaque entree a son commit. Aucune version se
 
 ### Corrige
 
+- `0c6f29d` : version de `setup-uv` corrigee et actions du workflow verrouillees par SHA.
+- `d85b444` : tests d'environnement isoles des variables CI pour le run PostgreSQL.
 - `d2b3a10` : chargement de `.env` limite au mode `local` avec `override=False`.
 - `d2b3a10` : secret local obligatoire, aucun placeholder utilise au demarrage.
 - `d2b3a10` : `DATABASE_URL` PostgreSQL rendue obligatoire hors du mode `local`.

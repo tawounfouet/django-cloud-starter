@@ -11,8 +11,8 @@ created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-003, US-014.]
 blocks: []
-commits: ["bbf58a8"]
-evidence: ["2026-11-18: check quality-and-tests documente dans README.md", "regle de fusion a appliquer dans GitHub"]
+commits: ["bbf58a8", "0c6f29d", "d85b444"]
+evidence: ["2026-11-18: check quality-and-tests documente, run vert `44282007106`", "regle de fusion a appliquer dans GitHub"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -69,6 +69,7 @@ jobs:
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
 | 2026-11-18 | Politique documentee, regle GitHub en attente | `bbf58a8` |
+| 2026-11-18 | CI verte, protection GitHub en attente | `44282007106` |
 
 ## Notes
 

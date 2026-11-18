@@ -12,7 +12,7 @@ updated: 2026-11-18
 depends_on: [US-005/006/011.]
 blocks: []
 commits: ["bbf58a8"]
-evidence: ["2026-11-18: bootstrap valide depuis un clone vierge, 25 tests verts, format et lock propres", "README.md: integration continue, regles de fusion et depannage"]
+evidence: ["2026-11-18: bootstrap valide depuis un clone vierge, 25 tests verts sur PostgreSQL 17 dans GitHub Actions", "README.md: integration continue, conventions, regles de fusion et depannage", "run CI `44282007106`"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
