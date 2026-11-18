@@ -8,9 +8,10 @@ Le format est chronologique et lie chaque entree a son commit. Aucune version se
 
 ### Ajoute
 
-- non encore committé : `docs/tasks/` avec modele, index et 52 fiches, y compris les stories deja implementees.
-- non encore committé : analyse du suivi Markdown local et `ADR-019` pour la migration future vers GitHub Issues.
-- non encore committé : analyse du nommage des archives de session et `ADR-020` pour la convention date, projet, rang et sujet.
+- `3d1bf9b` : vertical slice `records` avec modele, migration, CRUD web, auth, admin et tests.
+- `39eeb1a` : `docs/tasks/` avec modele, index et 52 fiches, y compris les stories deja implementees.
+- `98ebd5b` : analyse du suivi Markdown local et `ADR-019` pour la migration future vers GitHub Issues.
+- `98ebd5b` : analyse du nommage des archives de session et `ADR-020` pour la convention date, projet, rang et sujet.
 - `2b87a2e` : `SDLC.md` avec diagnostic de phase, cartographie des 7 phases et prochaines actions.
 - `2b87a2e` : plan d'implementation decoupe en 10 fichiers sous `docs/plans/`, avec `00_INDEX.md` comme point d'entree.
 - `2b87a2e` : stub de redirection `docs/specs/04_PLAN_IMPLEMENTATION_ET_CI_CD.md` pour preserver les references croisees.
@@ -21,10 +22,11 @@ Le format est chronologique et lie chaque entree a son commit. Aucune version se
 
 ### Modifie
 
+- `3d1bf9b` : `config/urls.py` monte les URLs `accounts/` et `records/` ; `config/settings.py` ajoute `apps.records` et les redirections de connexion.
 - `2b87a2e` : specifications deplacees de `docs/` vers `docs/specs/` sans changement de contenu.
 - `d2b3a10` : `config/settings.py` passe a une configuration stricte pilotee par `APP_ENV`.
 - `d2b3a10` : `pyproject.toml` verrouille sur Python 3.12 et ajoute les outils de test et de lint.
-- non encore committé : convention de nommage des archives de session applicable avec date, projet, rang et sujet ; quatre archives existantes renommees et references croisees corrigees.
+- `98ebd5b` : convention de nommage des archives de session applicable avec date, projet, rang et sujet ; quatre archives existantes renommees et references croisees corrigees.
 - `796a408` : `.gitignore` exclut le dossier `archives/` du suivi Git.
 
 ### Corrige

@@ -5,14 +5,14 @@ phase: R1
 gate: R1.2
 priority: P0
 size: M
-status: todo
-owner: null
+status: done
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-001, US-005]
 blocks: [US-009, US-010, US-011]
-commits: []
-evidence: []
+commits: ["3d1bf9b"]
+evidence: ["2026-11-18: check, makemigrations --check --dry-run, pytest 25 passed, ruff check", "apps/records/migrations/0001_initial.py"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/02_R1_SOCLE_LOCAL.md
 ---
@@ -25,10 +25,10 @@ Fournir un modele metier minimal pour demontrer l'ORM Django, les migrations ver
 
 ## Criteres d'acceptation
 
-- [ ] AC-01 : `Record` possede `title`, `description`, `status`, `created_by`, `created_at` et `updated_at`.
-- [ ] AC-02 : les validations et contraintes sont testees.
-- [ ] AC-03 : les migrations sont generees et versionnees.
-- [ ] AC-04 : aucune donnee reelle n'est importee.
+- [x] AC-01 : `Record` possede `title`, `description`, `status`, `created_by`, `created_at` et `updated_at`.
+- [x] AC-02 : les validations et contraintes sont testees.
+- [x] AC-03 : les migrations sont generees et versionnees.
+- [x] AC-04 : aucune donnee reelle n'est importee.
 
 ## Fichiers a creer ou modifier
 
@@ -113,6 +113,7 @@ INSTALLED_APPS = [
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche creee | ADR-019 |
+| 2026-11-18 | R1.2 implemente | `3d1bf9b` |
 
 ## Notes
 

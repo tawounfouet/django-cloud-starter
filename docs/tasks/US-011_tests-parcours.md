@@ -5,14 +5,14 @@ phase: R1
 gate: R1.2
 priority: P0
 size: M
-status: todo
-owner: null
+status: done
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-008, US-009, US-010]
 blocks: []
-commits: []
-evidence: []
+commits: ["3d1bf9b"]
+evidence: ["2026-11-18: check, makemigrations --check --dry-run, pytest 25 passed, ruff check", "apps/records/migrations/0001_initial.py"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/02_R1_SOCLE_LOCAL.md
 ---
@@ -25,10 +25,10 @@ Detecter les regressions sur la vertical slice avec des donnees generees, sans d
 
 ## Criteres d'acceptation
 
-- [ ] AC-01 : tests de modele, formulaire, routes, CRUD et permissions.
-- [ ] AC-02 : les donnees de test sont generees.
-- [ ] AC-03 : la suite se lance par une commande documentee.
-- [ ] AC-04 : les cas negatifs sont couverts.
+- [x] AC-01 : tests de modele, formulaire, routes, CRUD et permissions.
+- [x] AC-02 : les donnees de test sont generees.
+- [x] AC-03 : la suite se lance par une commande documentee.
+- [x] AC-04 : les cas negatifs sont couverts.
 
 ## Fichiers a creer ou modifier
 
@@ -91,6 +91,7 @@ def test_anonymous_user_is_redirected_to_login(client):
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche creee | ADR-019 |
+| 2026-11-18 | R1.2 implemente | `3d1bf9b` |
 
 ## Notes
 

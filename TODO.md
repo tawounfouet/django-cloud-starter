@@ -34,7 +34,7 @@
 | Epic | Phase | Terminees | Stories | Etat |
 |---|---|---:|---:|---|
 | EP-00 | R0 | 4 | 4 | terminé |
-| EP-01 | R1 | 3 | 7 | en cours |
+| EP-01 | R1 | 7 | 7 | termine |
 | EP-02 | R1/R2 | 0 | 6 | a demarrer |
 | EP-03 | R2 | 0 | 6 | a demarrer |
 | EP-04 | R3 | 0 | 8 | a demarrer |
@@ -43,7 +43,7 @@
 | EP-07 | R3/R5 | 0 | 4 | a demarrer |
 | EP-08 | R4 | 0 | 4 | conditionnel P2 |
 | EP-09 | R5 | 0 | 4 | conditionnel P2 |
-| **Total** | | **7** | **52** | **13 %** |
+| **Total** | | **11** | **52** | **21 %** |
 
 ## Timeline ASCII
 
@@ -52,7 +52,7 @@ Legend : `#` fait, `>` position courante, `.` restant. Chaque barre represente 2
 ```text
 Jalon  Epic  Avancement             Fait/Total  Pourcent  Etat
 R0     EP-00 |####################|   4/4        100 %    termine
-R1     EP-01 |#########>..........|   3/7         43 %    en cours
+R1     EP-01 |####################|   7/7        100 %    termine
 R1/R2  EP-02 |>...................|   0/6          0 %    a demarrer
 R2     EP-03 |>...................|   0/6          0 %    a demarrer
 R3     EP-04 |>...................|   0/8          0 %    a demarrer
@@ -61,7 +61,7 @@ R3/R5  EP-06 |>...................|   0/5          0 %    a demarrer
 R3/R5  EP-07 |>...................|   0/4          0 %    a demarrer
 R4     EP-08 |>...................|   0/4          0 %    conditionnel P2
 R5     EP-09 |>...................|   0/4          0 %    conditionnel P2
-TOTAL  TOUS  |###>................|   7/52        13 %    en cours
+TOTAL  TOUS  |####>...............|  11/52        21 %    en cours
 ```
 
 ## Suivi hebdomadaire
@@ -70,7 +70,7 @@ Une ligne par semaine. Les lignes `cible` sont indicatives et doivent etre rempl
 
 ```text
 Semaine  Releve      Fait/Total  Barre                Delta  Note
-2026-W47 2026-11-18  7/52        |###>................|  +7   base R1.1 et docs
+2026-W47 2026-11-18 11/52        |####>...............|  +4   base R1.1, docs et R1.2
 2026-W48 a remplir   -/52        |....................|   -   cible : R1.2
 2026-W49 a remplir   -/52        |....................|   -   cible : CI GitHub
 ```
@@ -99,10 +99,10 @@ rg -c '^\| US-[0-9]{3}.*\| \[ \] \|' TODO.md
 | [US-005](docs/tasks/US-005_initialiser-un-projet-django-modulaire.md) | Initialiser un projet Django modulaire | P0 | R1 | [x] | 2026-11-18 | opencode/big-pickle (agent) | 2026-11-18, `d2b3a10` |
 | [US-006](docs/tasks/US-006_separer-configuration-secrets-et-environnemen.md) | Separer configuration, secrets et environnements | P0 | R1 | [x] | 2026-11-18 | opencode/big-pickle (agent) | 2026-11-18, `d2b3a10` |
 | [US-007](docs/tasks/US-007_construire-la-page-publique-et-les-statiques.md) | Construire la page publique et les statiques | P0 | R1 | [x] | 2026-11-18 | opencode/big-pickle (agent) | 2026-11-18, `d2b3a10` |
-| [US-008](docs/tasks/US-008_modele-record.md) | Implementer le modele Record et ses migrations | P0 | R1 | [ ] | a planifier | opencode/big-pickle (agent) | a faire |
-| [US-009](docs/tasks/US-009_crud-web.md) | Implementer un CRUD web complet | P0 | R1 | [ ] | a planifier | opencode/big-pickle (agent) | a faire |
-| [US-010](docs/tasks/US-010_auth-admin.md) | Configurer l'authentification et Django Admin | P0 | R1 | [ ] | a planifier | opencode/big-pickle (agent) | a faire |
-| [US-011](docs/tasks/US-011_tests-parcours.md) | Couvrir les vues et le parcours metier par les tests | P0 | R1 | [ ] | a planifier | opencode/big-pickle (agent) | a faire |
+| [US-008](docs/tasks/US-008_modele-record.md) | Implementer le modele Record et ses migrations | P0 | R1 | [x] | 2026-11-18 | opencode/big-pickle (agent) | 2026-11-18, `3d1bf9b` |
+| [US-009](docs/tasks/US-009_crud-web.md) | Implementer un CRUD web complet | P0 | R1 | [x] | 2026-11-18 | opencode/big-pickle (agent) | 2026-11-18, `3d1bf9b` |
+| [US-010](docs/tasks/US-010_auth-admin.md) | Configurer l'authentification et Django Admin | P0 | R1 | [x] | 2026-11-18 | opencode/big-pickle (agent) | 2026-11-18, `3d1bf9b` |
+| [US-011](docs/tasks/US-011_tests-parcours.md) | Couvrir les vues et le parcours metier par les tests | P0 | R1 | [x] | 2026-11-18 | opencode/big-pickle (agent) | 2026-11-18, `3d1bf9b` |
 
 ## EP-02 - Qualite, tests et collaboration GitHub
 
@@ -199,7 +199,8 @@ rg -c '^\| US-[0-9]{3}.*\| \[ \] \|' TODO.md
 
 | Action | Lien | Statut | Date | Assigne a | Note |
 |---|---|---|---|---|---|
-| Implementer R1.2 | `docs/plans/02_R1_SOCLE_LOCAL.md` | [ ] | a planifier | opencode/big-pickle (agent) | US-008 a US-011 |
+| Implementer R1.2 | `docs/plans/02_R1_SOCLE_LOCAL.md` | [x] | 2026-11-18 | opencode/big-pickle (agent) | US-008 a US-011, `3d1bf9b` |
+| Configurer la CI GitHub Actions | `docs/plans/03_R2_GITHUB_CI.md` | [ ] | a planifier | opencode/big-pickle (agent) | US-012 a US-017 |
 | Consigner la preuve de clone vierge | `docs/specs/02_BACKLOG_ET_USER_STORIES.md` | [ ] | a planifier | opencode/big-pickle (agent) | [US-017](docs/tasks/US-017_documenter-l-onboarding-et-les-commandes-cour.md) |
 | Creer le workflow GitHub Actions | `docs/plans/03_R2_GITHUB_CI.md` | [ ] | a planifier | opencode/big-pickle (agent) | [US-014](docs/tasks/US-014_configurer-github-actions-pour-les-pull-reque.md) |
 | Mettre a jour le journal des changements | `CHANGELOG.md` | [ ] | a planifier | opencode/big-pickle (agent) | a chaque commit visible |

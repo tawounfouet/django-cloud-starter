@@ -5,14 +5,14 @@ phase: R1
 gate: R1.2
 priority: P0
 size: M
-status: todo
-owner: null
+status: done
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-008, US-010]
 blocks: [US-011]
-commits: []
-evidence: []
+commits: ["3d1bf9b"]
+evidence: ["2026-11-18: check, makemigrations --check --dry-run, pytest 25 passed, ruff check", "apps/records/migrations/0001_initial.py"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/02_R1_SOCLE_LOCAL.md
 ---
@@ -25,10 +25,10 @@ Permettre a un utilisateur autorise de creer, consulter, modifier et supprimer s
 
 ## Criteres d'acceptation
 
-- [ ] AC-01 : chaque operation possede une route et un test.
-- [ ] AC-02 : les formulaires valident les champs sans divulguer de donnees techniques.
-- [ ] AC-03 : les ecritures exigent une connexion et le droit proprietaire.
-- [ ] AC-04 : une demande invalide et un refus d'acces sont testes.
+- [x] AC-01 : chaque operation possede une route et un test.
+- [x] AC-02 : les formulaires valident les champs sans divulguer de donnees techniques.
+- [x] AC-03 : les ecritures exigent une connexion et le droit proprietaire.
+- [x] AC-04 : une demande invalide et un refus d'acces sont testes.
 
 ## Fichiers a creer ou modifier
 
@@ -99,6 +99,7 @@ path("records/", include("apps.records.urls")),
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche creee | ADR-019 |
+| 2026-11-18 | R1.2 implemente | `3d1bf9b` |
 
 ## Notes
 

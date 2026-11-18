@@ -5,14 +5,14 @@ phase: R1
 gate: R1.2
 priority: P0
 size: M
-status: todo
-owner: null
+status: done
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-008]
 blocks: [US-009, US-011]
-commits: []
-evidence: []
+commits: ["3d1bf9b"]
+evidence: ["2026-11-18: check, makemigrations --check --dry-run, pytest 25 passed, ruff check", "apps/records/migrations/0001_initial.py"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/02_R1_SOCLE_LOCAL.md
 ---
@@ -25,10 +25,10 @@ Utiliser Django Auth et l'admin natif pour gerer les comptes et les enregistreme
 
 ## Criteres d'acceptation
 
-- [ ] AC-01 : connexion et deconnexion fonctionnent.
-- [ ] AC-02 : l'admin exige `is_staff` et les permissions appropriees.
-- [ ] AC-03 : un compte non autorise recoit un refus explicite.
-- [ ] AC-04 : la creation du superutilisateur est documentee sans mot de passe partage.
+- [x] AC-01 : connexion et deconnexion fonctionnent.
+- [x] AC-02 : l'admin exige `is_staff` et les permissions appropriees.
+- [x] AC-03 : un compte non autorise recoit un refus explicite.
+- [x] AC-04 : la creation du superutilisateur est documentee sans mot de passe partage.
 
 ## Fichiers a creer ou modifier
 
@@ -89,6 +89,7 @@ LOGOUT_REDIRECT_URL = "home"
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche creee | ADR-019 |
+| 2026-11-18 | R1.2 implemente | `3d1bf9b` |
 
 ## Notes
 
