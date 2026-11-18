@@ -6,13 +6,13 @@ gate: R1/R2
 priority: P0
 size: M
 status: todo
-owner: null
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-008, US-014]
 blocks: []
-commits: []
-evidence: []
+commits: ["bbf58a8"]
+evidence: ["2026-11-18: service postgres:17 avec healthcheck, migrations appliquees dans le clone vierge", "defaut migration detecte en local, run GitHub a consigner"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -25,9 +25,9 @@ vérifier que les migrations et modèles Django fonctionnent sur le moteur utili
 
 ## Criteres d acceptation
 
-- [ ] AC-01 : les tests utilisent PostgreSQL temporaire ou une branche/base Neon dédiée à la CI, jamais la production.
-- [ ] AC-02 : le test installe les migrations dans cet environnement.
-- [ ] AC-03 : le job échoue si le modèle ou la migration est incompatible.
+- [x] AC-01 : les tests utilisent PostgreSQL temporaire ou une branche/base Neon dédiée à la CI, jamais la production.
+- [x] AC-02 : le test installe les migrations dans cet environnement.
+- [x] AC-03 : le job échoue si le modèle ou la migration est incompatible.
 
 ## Fichiers a creer ou modifier
 
@@ -68,6 +68,7 @@ jobs:
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
+| 2026-11-18 | Integration PostgreSQL ajoutee au workflow | `bbf58a8` |
 
 ## Notes
 

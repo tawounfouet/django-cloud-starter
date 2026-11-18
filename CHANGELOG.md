@@ -8,6 +8,8 @@ Le format est chronologique et lie chaque entree a son commit. Aucune version se
 
 ### Ajoute
 
+- `bbf58a8` : workflow GitHub Actions avec hygiene du depot, checks Django, migrations, PostgreSQL jetable, pytest et collectstatic.
+- `6c212b0` : formatage des 15 fichiers deja suivis pour rendre le controle `ruff format --check .` vert.
 - `3d1bf9b` : vertical slice `records` avec modele, migration, CRUD web, auth, admin et tests.
 - `39eeb1a` : `docs/tasks/` avec modele, index et 52 fiches, y compris les stories deja implementees.
 - `98ebd5b` : analyse du suivi Markdown local et `ADR-019` pour la migration future vers GitHub Issues.
@@ -23,6 +25,7 @@ Le format est chronologique et lie chaque entree a son commit. Aucune version se
 ### Modifie
 
 - `3d1bf9b` : `config/urls.py` monte les URLs `accounts/` et `records/` ; `config/settings.py` ajoute `apps.records` et les redirections de connexion.
+- `bbf58a8` : `README.md` documente la CI, le check requis `quality-and-tests` et le depannage courant.
 - `2b87a2e` : specifications deplacees de `docs/` vers `docs/specs/` sans changement de contenu.
 - `d2b3a10` : `config/settings.py` passe a une configuration stricte pilotee par `APP_ENV`.
 - `d2b3a10` : `pyproject.toml` verrouille sur Python 3.12 et ajoute les outils de test et de lint.

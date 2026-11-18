@@ -6,13 +6,13 @@ gate: R1/R2
 priority: P0
 size: S
 status: todo
-owner: null
+owner: tawounfouet (humain)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-003, US-005/006.]
 blocks: []
 commits: []
-evidence: [depot publie, conventions a ajouter]
+evidence: ["2026-11-18: remote origin configure, main ahead 8, push non autorise"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -68,6 +68,7 @@ jobs:
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
+| 2026-11-18 | Implementation locale, push en attente | `bbf58a8` |
 
 ## Notes
 

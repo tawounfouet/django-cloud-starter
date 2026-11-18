@@ -6,13 +6,13 @@ gate: R1/R2
 priority: P0
 size: M
 status: todo
-owner: null
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-011]
 blocks: []
-commits: []
-evidence: []
+commits: ["bbf58a8"]
+evidence: ["2026-11-18: .github/workflows/ci.yml valide en YAML, declencheurs PR, push et workflow_dispatch", "statuts PR a valider apres push"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -25,10 +25,10 @@ lancer automatiquement lint, tests et contrôles de sécurité lors d'une PR.
 
 ## Criteres d acceptation
 
-- [ ] AC-01 : ouverture et modification d'une PR déclenchent la CI.
+- [x] AC-01 : ouverture et modification d'une PR déclenchent la CI.
 - [ ] AC-02 : les statuts réussis/échoués sont visibles dans la PR.
-- [ ] AC-03 : la CI n'utilise aucune base de production ni secret de production.
-- [ ] AC-04 : le workflow applique les permissions minimales nécessaires et maîtrise l'exécution de code non fiable.
+- [x] AC-03 : la CI n'utilise aucune base de production ni secret de production.
+- [x] AC-04 : le workflow applique les permissions minimales nécessaires et maîtrise l'exécution de code non fiable.
 
 ## Fichiers a creer ou modifier
 
@@ -69,6 +69,7 @@ jobs:
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
+| 2026-11-18 | Workflow cree, statuts PR en attente | `bbf58a8` |
 
 ## Notes
 

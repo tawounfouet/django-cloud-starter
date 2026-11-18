@@ -6,13 +6,13 @@ gate: R1/R2
 priority: P0
 size: M
 status: todo
-owner: null
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-002, US-012.]
 blocks: []
-commits: []
-evidence: [ruff local, CI absente]
+commits: ["bbf58a8"]
+evidence: ["2026-11-18: ruff check, ruff format --check, uv lock --check, hygiene et defauts volontaires valides en local", "run GitHub a consigner"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -25,9 +25,9 @@ détecter les problèmes de format, lint, configuration et dépendances avant fu
 
 ## Criteres d acceptation
 
-- [ ] AC-01 : commandes de vérification documentées, avec versions figées.
+- [x] AC-01 : commandes de vérification documentées, avec versions figées.
 - [ ] AC-02 : un défaut volontaire fait échouer le job concerné.
-- [ ] AC-03 : un scan des secrets et des fichiers interdits est présent.
+- [x] AC-03 : un scan des secrets et des fichiers interdits est présent.
 
 ## Fichiers a creer ou modifier
 
@@ -68,6 +68,7 @@ jobs:
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
+| 2026-11-18 | Controles locaux et hygiene ajoutes au workflow | `bbf58a8` |
 
 ## Notes
 

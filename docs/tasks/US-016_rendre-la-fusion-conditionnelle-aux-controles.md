@@ -6,13 +6,13 @@ gate: R1/R2
 priority: P0
 size: M
 status: todo
-owner: null
+owner: tawounfouet (humain)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-003, US-014.]
 blocks: []
-commits: []
-evidence: []
+commits: ["bbf58a8"]
+evidence: ["2026-11-18: check quality-and-tests documente dans README.md", "regle de fusion a appliquer dans GitHub"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -25,9 +25,9 @@ réduire la probabilité d'un déploiement automatique d'une modification invali
 
 ## Criteres d acceptation
 
-- [ ] AC-01 : la politique de fusion inclut revue adaptée et vérifications requises selon les capacités du dépôt.
+- [x] AC-01 : la politique de fusion inclut revue adaptée et vérifications requises selon les capacités du dépôt.
 - [ ] AC-02 : un changement avec CI rouge n'est pas fusionné via le parcours normal.
-- [ ] AC-03 : si les règles natives sont indisponibles, l'écart et la mesure de mitigation sont documentés ; le risque est arbitré avant GO.
+- [x] AC-03 : si les règles natives sont indisponibles, l'écart et la mesure de mitigation sont documentés ; le risque est arbitré avant GO.
 
 ## Fichiers a creer ou modifier
 
@@ -68,6 +68,7 @@ jobs:
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
+| 2026-11-18 | Politique documentee, regle GitHub en attente | `bbf58a8` |
 
 ## Notes
 

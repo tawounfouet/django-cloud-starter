@@ -5,14 +5,14 @@ phase: R1/R2
 gate: R1/R2
 priority: P0
 size: S
-status: todo
-owner: null
+status: done
+owner: opencode/big-pickle (agent)
 created: 2026-11-18
 updated: 2026-11-18
 depends_on: [US-005/006/011.]
 blocks: []
-commits: []
-evidence: [README present, preuve clone vierge a consigner]
+commits: ["bbf58a8"]
+evidence: ["2026-11-18: bootstrap valide depuis un clone vierge, 25 tests verts, format et lock propres", "README.md: integration continue, regles de fusion et depannage"]
 backlog: ../specs/02_BACKLOG_ET_USER_STORIES.md
 plan: ../plans/00_INDEX.md
 ---
@@ -25,9 +25,9 @@ permettre à un nouvel utilisateur technique de reproduire le projet.
 
 ## Criteres d acceptation
 
-- [ ] AC-01 : le README couvre prérequis, installation, `.env.example`, tests et lancement.
-- [ ] AC-02 : les commandes sont testées depuis un clone vierge.
-- [ ] AC-03 : les erreurs fréquentes et leur diagnostic sont indiqués.
+- [x] AC-01 : le README couvre prérequis, installation, `.env.example`, tests et lancement.
+- [x] AC-02 : les commandes sont testées depuis un clone vierge.
+- [x] AC-03 : les erreurs fréquentes et leur diagnostic sont indiqués.
 
 ## Fichiers a creer ou modifier
 
@@ -68,6 +68,7 @@ jobs:
 | Date | Evenement | Reference |
 |---|---|---|
 | 2026-11-18 | Fiche generee depuis le backlog | ADR-019 |
+| 2026-11-18 | Onboarding valide depuis un clone vierge | `bbf58a8` |
 
 ## Notes
 
