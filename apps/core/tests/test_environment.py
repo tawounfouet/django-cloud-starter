@@ -5,7 +5,8 @@ import sys
 from django.conf import settings
 
 BASE_ENV = {
-    **os.environ,
+    "PATH": os.environ.get("PATH", ""),
+    "HOME": os.environ.get("HOME", ""),
     "DJANGO_SETTINGS_MODULE": "config.settings",
     "PYTHONPATH": str(settings.BASE_DIR),
 }
