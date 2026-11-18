@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Connexion - django-cloud-starter{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Connexion</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="hidden" name="next" value="{{ next }}">
+      <button type="submit">Se connecter</button>
+    </form>
+  </section>
+{% endblock %}

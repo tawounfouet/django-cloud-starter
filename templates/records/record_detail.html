@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}{{ record.title }} - django-cloud-starter{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>{{ record.title }}</h1>
+    <p>{{ record.description }}</p>
+    <p>Statut : {{ record.get_status_display }}</p>
+    <p><a href="{% url 'record_update' record.pk %}">Modifier</a></p>
+    <p><a href="{% url 'record_delete' record.pk %}">Supprimer</a></p>
+    <p><a href="{% url 'record_list' %}">Retour à la liste</a></p>
+  </section>
+{% endblock %}

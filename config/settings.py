@@ -25,9 +25,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY or SECRET_KEY.startswith("REPLACE_WITH_"):
     raise ImproperlyConfigured("DJANGO_SECRET_KEY absent ou factice")
 
-DEBUG = APP_ENV == "local" and os.getenv(
-    "DJANGO_DEBUG", "false"
-).strip().lower() == "true"
+DEBUG = APP_ENV == "local" and os.getenv("DJANGO_DEBUG", "false").strip().lower() == "true"
 
 
 def csv_setting(name: str) -> list[str]:
@@ -73,6 +71,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "apps.core",
+    "apps.records",
 ]
 
 MIDDLEWARE = [
@@ -143,3 +142,7 @@ LOGGING = {
     "handlers": {"console": {"class": "logging.StreamHandler"}},
     "root": {"handlers": ["console"], "level": LOG_LEVEL},
 }
+
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "record_list"
+LOGOUT_REDIRECT_URL = "home"

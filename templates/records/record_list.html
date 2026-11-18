@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Records - django-cloud-starter{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Records</h1>
+    <p><a href="{% url 'record_create' %}">Nouvel enregistrement</a></p>
+    {% if records %}
+      <ul>
+        {% for record in records %}
+          <li>
+            <a href="{% url 'record_detail' record.pk %}">{{ record.title }}</a>
+            <span>{{ record.get_status_display }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Aucun enregistrement.</p>
+    {% endif %}
+  </section>
+{% endblock %}

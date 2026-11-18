@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Formulaire record - django-cloud-starter{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>{% if form.instance.pk %}Modifier{% else %}Créer{% endif %} un enregistrement</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Enregistrer</button>
+    </form>
+  </section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Supprimer {{ record.title }} - django-cloud-starter{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <h1>Supprimer {{ record.title }}</h1>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit">Confirmer la suppression</button>
+    </form>
+    <p><a href="{% url 'record_detail' record.pk %}">Annuler</a></p>
+  </section>
+{% endblock %}

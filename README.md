@@ -31,10 +31,13 @@ L'admin répond sur http://127.0.0.1:8000/admin/ (créer un superuser avec `uv r
 
 Aucun service externe n'est nécessaire au démarrage local : SQLite est utilisé par défaut.
 
+La vertical slice `records` est disponible sur http://127.0.0.1:8000/records/ après connexion. Chaque utilisateur ne voit que ses propres enregistrements. Les comptes sont gérés par Django Auth ; aucun mot de passe partagé n'est documenté.
+
 ## Vérifications
 
 ```bash
 uv run python manage.py check
+uv run python manage.py makemigrations --check --dry-run
 uv run python manage.py collectstatic --noinput --dry-run
 uv run pytest -q
 uv run ruff check .
@@ -63,8 +66,9 @@ Le démarrage échoue explicitement si `APP_ENV` est inconnu, si la clé est abs
 
 ```text
 apps/core/        vue d'accueil, URLConf, tests
+apps/records/     modèle Record, CRUD web, admin et tests
 config/           réglages, URLConf racine, WSGI et ASGI
-templates/        base.html et templates de l'app core
+templates/        base.html, templates des apps core, records et registration
 static/css/       feuille de style de la page publique
 docs/             documents de cadrage et plan d'implémentation
 pyproject.toml    dépendances, pytest et ruff
