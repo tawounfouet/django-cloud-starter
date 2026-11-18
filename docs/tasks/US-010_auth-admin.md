@@ -61,7 +61,7 @@ class RecordAdmin(admin.ModelAdmin):
 `config/urls.py`, ajout des URLs d'authentification :
 
 ```python
-path("accounts/", include("django.contrib.auth.urls")),
+urlpatterns = [path("accounts/", include("django.contrib.auth.urls"))]
 ```
 
 `config/settings.py`, ajout en fin de fichier :

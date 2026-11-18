@@ -548,9 +548,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY or SECRET_KEY.startswith("REPLACE_WITH_"):
     raise ImproperlyConfigured("DJANGO_SECRET_KEY absent ou factice")
 
-DEBUG = APP_ENV == "local" and os.getenv(
-    "DJANGO_DEBUG", "false"
-).strip().lower() == "true"
+DEBUG = APP_ENV == "local" and os.getenv("DJANGO_DEBUG", "false").strip().lower() == "true"
 
 
 def csv_setting(name: str) -> list[str]:
@@ -669,6 +667,7 @@ import sys
 def main() -> None:
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
     from django.core.management import execute_from_command_line
+
     execute_from_command_line(sys.argv)
 
 

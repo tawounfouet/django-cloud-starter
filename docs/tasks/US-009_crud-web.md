@@ -78,7 +78,7 @@ class RecordListView(LoginRequiredMixin, ListView):
 `config/urls.py`, ajout de l'include :
 
 ```python
-path("records/", include("apps.records.urls")),
+urlpatterns = [path("records/", include("apps.records.urls"))]
 ```
 
 ## Plan d'action

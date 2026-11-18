@@ -42,11 +42,7 @@ garantir que les jobs CI exécutent les tests et migrations sans droits sur Prod
 Extrait representatif pour EP-04 :
 
 ```python
-DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ["DATABASE_URL"], ssl_require=True
-    )
-}
+DATABASES = {"default": dj_database_url.parse(os.environ["DATABASE_URL"], ssl_require=True)}
 ```
 
 ## Plan d action

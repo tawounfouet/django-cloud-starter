@@ -45,11 +45,7 @@ garantir qu'un environnement de PR ne peut ni modifier ni exposer la production.
 Extrait representatif pour EP-04 :
 
 ```python
-DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ["DATABASE_URL"], ssl_require=True
-    )
-}
+DATABASES = {"default": dj_database_url.parse(os.environ["DATABASE_URL"], ssl_require=True)}
 ```
 
 ## Plan d action

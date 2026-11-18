@@ -43,11 +43,7 @@ vérifier que le déploiement d'une nouvelle version n'efface pas les données u
 Extrait representatif pour EP-04 :
 
 ```python
-DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ["DATABASE_URL"], ssl_require=True
-    )
-}
+DATABASES = {"default": dj_database_url.parse(os.environ["DATABASE_URL"], ssl_require=True)}
 ```
 
 ## Plan d action

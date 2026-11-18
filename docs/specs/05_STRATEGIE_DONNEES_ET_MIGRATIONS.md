@@ -323,9 +323,7 @@ Les noms `DB_TARGET_ID` et `DB_MIGRATION_APPROVED_SHA` sont des **conventions pr
 import environ
 
 env = environ.Env()
-DATABASES = {
-    "default": env.db("DATABASE_URL")
-}
+DATABASES = {"default": env.db("DATABASE_URL")}
 
 # Approche conservatrice en contexte serverless ; à mesurer avant évolution.
 DATABASES["default"]["CONN_MAX_AGE"] = 0
