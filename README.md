@@ -36,13 +36,34 @@ La vertical slice `records` est disponible sur http://127.0.0.1:8000/records/ ap
 ## Vérifications
 
 ```bash
+uv sync --frozen --group dev
 uv run python manage.py check
 uv run python manage.py makemigrations --check --dry-run
 uv run python manage.py collectstatic --noinput --dry-run
 uv run pytest -q
 uv run ruff check .
+uv run ruff format --check .
 uv lock --check
 ```
+
+## Intégration continue
+
+Le workflow `.github/workflows/ci.yml` se déclenche sur les pull requests vers `main`, sur les pushes vers `main` et manuellement. Le job s'appelle `quality-and-tests` : c'est ce nom exact qui doit être exigé dans les règles de fusion GitHub.
+
+La CI installe les dépendances depuis `uv.lock`, vérifie l'hygiène du dépôt, lance Ruff, contrôle le lockfile, exécute les checks Django, vérifie les migrations, applique les migrations sur un PostgreSQL 17 jetable, lance `pytest` et valide `collectstatic`. Aucun secret de production n'est exposé aux pull requests, y compris issues d'un fork : le workflow utilise uniquement des valeurs éphémères et `pull_request_target` n'est pas utilisé.
+
+La protection de `main`, la revue requise et les vérifications obligatoires se configurent dans les paramètres du dépôt GitHub. Le dépôt doit être publié et le workflow poussé avant que ces règles puissent être appliquées.
+
+## Dépannage
+
+| Symptôme | Diagnostic |
+|---|---|
+| `APP_ENV est requis en déploiement ou en CI` | Définir `APP_ENV=local` dans `.env` ou `APP_ENV=ci` dans l'environnement CI. |
+| `DJANGO_SECRET_KEY absent ou factice` | Remplacer le placeholder de `.env.example` par une clé générée localement. |
+| `DATABASE_URL PostgreSQL est requis hors local` | Fournir une URL PostgreSQL hors `local` ; SQLite reste réservé au développement. |
+| `You have unapplied migrations` | Exécuter `uv run python manage.py migrate` avant de lancer le serveur. |
+| `ruff format --check .` échoue | Exécuter `uv run ruff format .` puis committer le résultat. |
+| `uv lock --check` échoue | Exécuter `uv lock` après un changement de `pyproject.toml`. |
 
 ## Configuration
 
@@ -65,6 +86,7 @@ Le démarrage échoue explicitement si `APP_ENV` est inconnu, si la clé est abs
 ## Structure
 
 ```text
+.github/workflows/ workflow CI GitHub Actions
 apps/core/        vue d'accueil, URLConf, tests
 apps/records/     modèle Record, CRUD web, admin et tests
 config/           réglages, URLConf racine, WSGI et ASGI

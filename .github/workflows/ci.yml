@@ -1,0 +1,95 @@
+name: Django CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: django-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality-and-tests:
+    name: quality-and-tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      APP_ENV: ci
+      DJANGO_SECRET_KEY: ci-only-ephemeral-test-key-not-for-production
+      DJANGO_DEBUG: "false"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,testserver
+      DATABASE_URL: postgresql://ci_user:ci_password@127.0.0.1:5432/ci_db
+      CI: "true"
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_DB: ci_db
+          POSTGRES_USER: ci_user
+          POSTGRES_PASSWORD: ci_password
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ci_user -d ci_db"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v10
+        with:
+          enable-cache: true
+
+      - name: Set up Python 3.12
+        run: uv python install 3.12
+
+      - name: Install locked dependencies
+        run: uv sync --frozen --group dev
+
+      - name: Check repository hygiene
+        run: |
+          if git ls-files | grep -Eq '(^|/)\.env$'; then
+            echo 'A tracked .env file is forbidden'
+            exit 1
+          fi
+          if git ls-files | grep -Eiq '\.(pem|key|pfx|p12)$|(^|/)id_rsa$'; then
+            echo 'A private key file is forbidden'
+            exit 1
+          fi
+          if git grep -nEi -e 'REPLACE_WITH_[A-Z_]+' -e 'gh[pousr]_[A-Za-z0-9]{20,}' -e 'github_pat_[A-Za-z0-9_]{20,}' -e 'AKIA[0-9A-Z]{16}' -- ':!*.md' ':!.env.example' ':!.github/workflows/ci.yml'; then
+            echo 'A credential-like pattern was found'
+            exit 1
+          fi
+
+      - name: Lint
+        run: uv run --frozen ruff check .
+
+      - name: Format
+        run: uv run --frozen ruff format --check .
+
+      - name: Lockfile
+        run: uv lock --check
+
+      - name: Django system checks
+        run: uv run --frozen python manage.py check
+
+      - name: Ensure migrations are committed
+        run: uv run --frozen python manage.py makemigrations --check --dry-run
+
+      - name: Apply PostgreSQL migrations
+        run: uv run --frozen python manage.py migrate --noinput
+
+      - name: Run application tests
+        run: uv run --frozen pytest -q
+
+      - name: Validate static collection
+        run: uv run --frozen python manage.py collectstatic --noinput
